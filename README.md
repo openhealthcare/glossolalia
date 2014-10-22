@@ -2,8 +2,10 @@
 
 Glossolalia, often understood among Protestant Christians as speaking in tongues,
 is the fluid vocalizing of speech-like syllables that lack any readily comprehended meaning,
-in some cases as part of religious practice.[1] Some consider it as a part of a sacred
+in some cases as part of religious practice. Some consider it as a part of a sacred
 language. It is a common practice amongst Pentecostal and Charismatic Christianity.
+
+You're welcome.
 
 ## Get Started
 
