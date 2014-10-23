@@ -7,7 +7,9 @@ defmodule Glossolalia.Mixfile do
       elixir: "~> 1.0.0-rc1",
       elixirc_paths: ["lib", "web"],
       deps: deps,
-      services: services
+      services: services,
+      translations: translations,
+      servicetypes: servicetypes
     ]
   end
 
@@ -33,9 +35,26 @@ defmodule Glossolalia.Mixfile do
     ]
   end
 
+  defp servicetypes do
+    [OPAL: Glossolalia.Services.OPAL, DDD: Glossolalia.Services.DDD]
+  end
+
   defp services do
     [
-        {}
+        elcid: [url: 'http://localhost:8000', type: :OPAL],
+        renal: [url: 'http://localhost:8080', type: :OPAL],
+        ddd:   [url: 'http://localhost:4000', type: :DDD ]
+    ]
+  end
+
+  defp translations do
+    [
+        elcid: [
+                from: :accept, to: [ {:renal, :write}, {:ddd, :write} ]
+            ],
+        renal: [
+                from: :accept, to: [ {:elcid, :write}, {:ddd, :write} ]
+            ]
     ]
   end
   

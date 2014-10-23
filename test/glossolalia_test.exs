@@ -6,7 +6,7 @@ defmodule GlossolaliaTest do
   end
 
   test "can I do it" do
-    assert true
+    assert Glossolalia.Services.OPAL
   end
 
 
