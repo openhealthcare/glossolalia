@@ -15,7 +15,7 @@ defmodule Glossolalia.Services do
         case HTTPoison.get url do
           %HTTPoison.Response{status_code: 200, body: body} ->
             result = Poison.decode body
-            {:ok, @encoding.decode result}
+            {:ok, result}
           %HTTPoison.Response{status_code: 404} ->
             {:fail, "Not found :("}
         end
@@ -25,14 +25,25 @@ defmodule Glossolalia.Services do
       POST some JSON data to the server
       """
       defp post_json(url, data) do
+        IO.puts "Posting JSON to #{url}"
+        {:ok, encoded} = Poison.encode(data)
+        IO.puts "Data: #{inspect encoded}"
         HTTPoison.start
-        case HTTPoison.post Poison.encode(@endoding.encode data) do
-          %HTTPoison.Response{status_code: 200, body: body} ->
+        case HTTPoison.request( :post, url, encoded ) do
+          {:ok, %HTTPoison.Response{status_code: 200, body: body} } ->
             {:ok, 200}
-          %HTTPoison.Response{status_code: 404} ->
+          {:ok, %HTTPoison.Response{status_code: 404, body: body} } ->
             {:fail, "Not found :("}
-          %HTTPoison.Response{status_code: status} ->
+          {:ok, %HTTPoison.Response{status_code: status, body: body} } ->
+            IO.puts "Failed with #{status}"
+            IO.puts body
             {:fail, "Unexpected status code: #{status}"}
+            {:error, err} ->
+            IO.puts "Unknown error condition :("
+            IO.puts "#{inspect err}"
+          thing ->
+            IO.puts "Don't know what this is: #{inspect thing}"
+            {:fail, "Unknokwn thing"}
         end
       end
 

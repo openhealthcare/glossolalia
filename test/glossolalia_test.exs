@@ -6,7 +6,7 @@ defmodule GlossolaliaTest do
   end
 
   test "can I do it" do
-    assert Glossolalia.Services.OPAL
+    assert Glossolalia.Accepter.service_exists?(:OPAL, :elcid)
   end
 
 

@@ -18,10 +18,11 @@ defmodule Glossolalia.Writer do
   def accept do
     receive do
      {name, event, data} -> # We're writing accept events here
-        IO.puts "Got ourselves a write event!"
+        IO.puts "Got ourselves a write event for #{inspect name} - #{inspect event}!"
         service = @services[name]
         mod = @servicetypes[service[:type]]
-        instance = %Glossolalia.Services.OPAL{url: service[:url], name: name}
+        IO.puts "Calling write for #{inspect mod}"
+        instance = %{url: service[:url], name: name}
         mod.write instance, event, data
       _ ->
     end

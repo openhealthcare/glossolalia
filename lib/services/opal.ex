@@ -9,17 +9,16 @@ defmodule Glossolalia.Services.OPAL do
   Return a patient's details
   """
   def read(instance, :patient, id) do
-    get_json "#{instance[:url]}/api/v0.1/patient/#{id}"
+    @encoding.decode(get_json "#{instance[:url]}/api/v0.1/patient/#{id}")
   end
 
   @doc"""
   Return an episode's details
   """
   def read(instance, :episode, id) do
-    get_json "#{instance[:url]}/api/v0.1/episode/#{id}"
+    @encoding.decode(get_json "#{instance[:url]}/api/v0.1/episode/#{id}")
   end
 
-  
   @doc"""
   Accept POSTed data for various types of event
   """
@@ -27,9 +26,22 @@ defmodule Glossolalia.Services.OPAL do
     {:ok, @encoding.decode data}
   end
   
-  # Accept POST 
+  @doc """
+  POST episode data for an admitted patient
+  """
+  def write(instance, :admit, data) do
+    IO.puts "Writing an admission to OPAL service #{inspect instance}"
+    post_json "#{instance[:url]}/api/v0.1/episode/admit", @encoding.encode(data)
+    {:ok, "Posted"}
+  end
 
-  # Subscribe
+  @doc """
+  POST episode data for a discharged patient
+  """
+  def write(instance, :discharge, data) do
+    post_json "#{instance[:url]}/api/v0.1/episode/#{data["id"]}/discharge", @encoding.encode(data)
+    {:ok, "Posted"}
+  end
 
   @doc """
   POST episode data for a change to an episode
@@ -38,10 +50,8 @@ defmodule Glossolalia.Services.OPAL do
   Writing to OPAL requires just the POST state to be sent.
   """
   def write(instance, :change, data) do
-    post_json "#{instance[:url]}/api/v0.1/episode/#{data["post"]["id"]}/change", data["post"]
+    post_json "#{instance[:url]}/api/v0.1/episode/#{data["post"]["id"]}/change", @encoding.encode(data["post"])
     {:ok, "Posted"}
   end
   
-  # Publish
-
 end

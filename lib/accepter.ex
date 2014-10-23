@@ -13,8 +13,8 @@ defmodule Glossolalia.Accepter do
   Predicate method to determine whether a service of TYPE called
   NAME has been registered with us.
   """
-  defp service_exists?(type, name) do
-    Keyword.has_key(@services, name) && @services[name][:type] == type
+  def service_exists?(type, name) do
+    Keyword.has_key?(@services, name) && @services[name][:type] == type
   end
 
   # TODO: Find better word for type
@@ -22,7 +22,10 @@ defmodule Glossolalia.Accepter do
   Return SERVICE's :accept translation(s) for TYPE
   """
   defp translations(service) do
-    Enum.filter @translations[service], &(&1[:from] == :accept)
+    IO.puts inspect(@translations[service])
+    res = Enum.filter @translations[service], &(&1[:from] == :accept)
+    IO.puts inspect(hd(res)[:to])
+    hd(res)[:to]
   end
 
   @doc """
@@ -30,8 +33,11 @@ defmodule Glossolalia.Accepter do
   which has accepted EVENT with DATA
   """
   def translate(name, event, data) do
-    to_translate = translations name
+    to_translate = translations(name)
+    IO.puts "Iterate through tranlations: #{inspect(to_translate)}"
     Enum.each to_translate, fn({service_name, output_type}) ->
+      IO.puts "Service: #{service_name}"
+      IO.puts "Output: #{output_type}"
       Phoenix.Topic.broadcast to_string(output_type), {service_name, event, data} 
     end
   end
@@ -46,11 +52,14 @@ defmodule Glossolalia.Accepter do
     receive do
       {:OPAL, event, name, data} ->
         IO.puts "OPAL event!"
+        IO.puts inspect(name)
         case service_exists? :OPAL, name do
-          true -> 
+          true ->
+            IO.puts "Service found"
             translate name, event, data
-            {:ok. "found"}
+            {:ok, "found"}
           false ->
+            IO.puts "Service not found :("
             {:fail, "Unregistered or badly configured service accepted"}
         end
       _ ->

@@ -50,10 +50,10 @@ defmodule Glossolalia.Mixfile do
   defp translations do
     [
         elcid: [
-                from: :accept, to: [ {:renal, :write}, {:ddd, :write} ]
+                [from: :accept, to: [ {:renal, :write}, {:ddd, :write} ] ]
             ],
         renal: [
-                from: :accept, to: [ {:elcid, :write}, {:ddd, :write} ]
+                [from: :accept, to: [ {:elcid, :write}, {:ddd, :write} ] ]
             ]
     ]
   end
