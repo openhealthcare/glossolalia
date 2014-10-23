@@ -26,7 +26,7 @@ defmodule Glossolalia.Services do
       """
       defp post_json(url, data) do
         HTTPoison.start
-        case HTTPoison.post Poison.encode(data) do
+        case HTTPoison.post Poison.encode(@endoding.encode data) do
           %HTTPoison.Response{status_code: 200, body: body} ->
             {:ok, 200}
           %HTTPoison.Response{status_code: 404} ->

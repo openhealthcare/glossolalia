@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :phoenix, Glossolalia.Router,
-  port: System.get_env("PORT") || 4000,
+  port: System.get_env("PORT") || 5000,
   ssl: false,
   host: "localhost",
   cookies: true,

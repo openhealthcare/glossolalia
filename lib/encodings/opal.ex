@@ -7,7 +7,7 @@ defmodule Glossolalia.Encodings.OPAL do
     data
   end
 
-  @doc"""
+  @doc """
   Encodes data for OPAL
   """
   def encode(data) do
