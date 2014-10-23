@@ -51,8 +51,8 @@ defmodule Glossolalia.Accepter do
   def accept do
     receive do
       {:OPAL, event, name, data} ->
-        IO.puts "OPAL event!"
-        IO.puts inspect(name)
+        IO.puts "Accepting an OPAL event from #{inspect(name)}!"
+        IO.puts "Data is #{inspect data}"
         case service_exists? :OPAL, name do
           true ->
             IO.puts "Service found"
