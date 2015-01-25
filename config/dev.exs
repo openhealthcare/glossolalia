@@ -1,18 +1,12 @@
 use Mix.Config
 
-config :phoenix, Glossolalia.Router,
-  port: System.get_env("PORT") || 5000,
-  ssl: false,
-  host: "localhost",
-  cookies: true,
-  session_key: "_glossolalia_key",
-  session_secret: "H4(3EM*^TV#XLEW9M%W@S1T@8GIJ%8!&8U1(%19%SW1%0UI1P(0=&^_$$S3H&5@L4ZO",
-  debug_errors: true
+config :glossolalia, Glossolalia.Endpoint,
+  http: [port: System.get_env("PORT") || 5000],
+  debug_errors: true,
+  cache_static_lookup: false
 
-config :phoenix, :code_reloader,
-  enabled: true
+# Enables code reloading for development
+config :phoenix, :code_reloader, true
 
-config :logger, :console,
-  level: :debug
-
-
+# Do not include metadata nor timestamps in development logs
+config :logger, :console, format: "[$level] $message\n"

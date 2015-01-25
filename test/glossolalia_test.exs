@@ -2,12 +2,6 @@ defmodule GlossolaliaTest do
   use ExUnit.Case
 
   test "the truth" do
-    assert(true)
+    assert 1 + 1 == 2
   end
-
-  test "can I do it" do
-    assert Glossolalia.Accepter.service_exists?(:OPAL, :elcid)
-  end
-
-
 end

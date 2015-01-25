@@ -5,7 +5,7 @@ defmodule Glossolalia.Writer do
   
   def start_link do
     sub = spawn_link &(accept/0)
-    Phoenix.Topic.subscribe(sub, "write")
+    Phoenix.PubSub.subscribe(sub, "write")
     {:ok, sub}
   end
 

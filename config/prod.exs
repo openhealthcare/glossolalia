@@ -1,23 +1,33 @@
 use Mix.Config
 
-# NOTE: To get SSL working, you will need to set:
+# ## SSL Support
 #
-#     ssl: true,
-#     keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#     certfile: System.get_env("SOME_APP_SSL_CERT_PATH"),
+# To get SSL working, you will need to set:
 #
-# Where those two env variables point to a file on disk
-# for the key and cert
+#     https: [port: 443,
+#             keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
+#             certfile: System.get_env("SOME_APP_SSL_CERT_PATH")]
+#
+# Where those two env variables point to a file on
+# disk for the key and cert.
 
-config :phoenix, Glossolalia.Router,
-  port: System.get_env("PORT"),
-  ssl: false,
-  host: "example.com",
-  cookies: true,
-  session_key: "_glossolalia_key",
-  session_secret: "H4(3EM*^TV#XLEW9M%W@S1T@8GIJ%8!&8U1(%19%SW1%0UI1P(0=&^_$$S3H&5@L4ZO"
+config :glossolalia, Glossolalia.Endpoint,
+  url: [host: "example.com"],
+  http: [port: System.get_env("PORT")],
+  secret_key_base: "F2Zohy8xYb2qYrDgQ5ZPESZCZ4YBbHvYLwyDXWvlqgXcE4kLQKMvV1U/c2DdMoSf"
 
-config :logger, :console,
-  level: :info,
-  metadata: [:request_id]
+# Do not pring debug messages in production
+config :logger, level: :info
 
+# ## Using releases
+#
+# If you are doing OTP releases, you need to instruct Phoenix
+# to start the server for all endpoints:
+#
+#     config :phoenix, :serve_endpoints, true
+#
+# Alternatively, you can configure exactly which server to
+# start per endpoint:
+#
+#     config :glossolalia, Glossolalia.Endpoint, server: true
+#

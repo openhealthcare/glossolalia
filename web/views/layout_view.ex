@@ -1,4 +1,4 @@
 defmodule Glossolalia.LayoutView do
-  use Glossolalia.Views
+  use Glossolalia.View
 
 end
