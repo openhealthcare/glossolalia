@@ -1,6 +1,11 @@
 <div class="jumbotron">
-  <h2>Welcome to Phoenix!</h2>
-  <p class="lead">Phoenix is an Elixir Web Framework targeting full-featured, fault tolerant applications with realtime functionality.</p>
+  <h2>Welcome to Glossolalia!</h2>
+  <p class="lead">
+    Glossolalia, often understood among Protestant Christians as speaking in tongues,
+    is the fluid vocalizing of speech-like syllables that lack any readily comprehended meaning,
+    in some cases as part of religious practice. Some consider it as a part of a sacred
+    language. It is a common practice amongst Pentecostal and Charismatic Christianity.
+  </p>
 </div>
 
 <div class="row marketing">
@@ -8,10 +13,7 @@
     <h4>Resources</h4>
     <ul>
       <li>
-        <a href="http://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
+        <a href="https://github.com/openhealthcare/glossolalia">Source</a>
       </li>
     </ul>
   </div>
@@ -20,13 +22,13 @@
     <h4>Help</h4>
     <ul>
       <li>
-        <a href="https://github.com/phoenixframework/phoenix/issues?state=open">Issues</a>
+        <a href="https://github.com/openhealthcare/glossolalia/issues?state=open">Issues</a>
       </li>
       <li>
-        <a href="irc://irc.freenode.net/elixir-lang">#elixir-lang on freenode IRC</a>
+        <a href="irc://irc.freenode.net/ohc_dev">#ohc_dev on freenode IRC</a>
       </li>
       <li>
-        <a href="https://twitter.com/chris_mccord">@chris_mccord</a>
+        <a href="https://twitter.com/ohcuk">@ohcuk</a>
       </li>
     </ul>
   </div>
