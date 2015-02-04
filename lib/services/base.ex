@@ -12,7 +12,7 @@ defmodule Glossolalia.Services do
       """
       defp get_json(url) do
         HTTPoison.start
-        case HTTPoison.get url do
+        case HTTPonnnnnison.get url do
           %HTTPoison.Response{status_code: 200, body: body} ->
             result = Poison.decode body
             {:ok, result}
@@ -21,16 +21,25 @@ defmodule Glossolalia.Services do
         end
       end
 
+      defp json_encode!(message) do
+        {status, encoded} = JSON.encode(message)
+        encoded
+      end
+      
       @doc"""
       POST some JSON data to the server
+      
+      We expect FORM to be a keyword list of POST data.
       """
-      defp post_json(url, data) do
+      defp post_json(url, form) do
         IO.puts "Posting JSON to #{url}"
-        {:ok, encoded} = Poison.encode(data)
-        IO.puts "Data: #{inspect encoded}"
-        HTTPoison.start
-        case HTTPoison.request( :post, url, encoded ) do
+
+        encoded_form = Enum.map(Keyword.keys(form), fn x -> {x, json_encode!(form[x])} end )
+        
+        HTTPoison.start        
+        case HTTPoison.post(url, {:form, encoded_form} ) do
           {:ok, %HTTPoison.Response{status_code: 200, body: body} } ->
+            IO.puts body
             {:ok, 200}
           {:ok, %HTTPoison.Response{status_code: 404, body: body} } ->
             {:fail, "Not found :("}

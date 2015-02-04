@@ -29,6 +29,6 @@ defmodule Glossolalia.Router do
   scope "/api", Glossolalia do
     pipe_through :api
     
-    post "/api/v0.1/accept/", APIController, :accept
+    post "/v0.1/accept", APIController, :accept
   end
 end

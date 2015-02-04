@@ -6,7 +6,13 @@ defmodule Glossolalia.Services.DDD do
   @encoding Glossolalia.Encodings.DDD
 
   def write(instance, event, data) do
-    post_json "#{instance[:url]}/api/v0.1/#{event}/", data
+    case event do
+      :change ->
+        form = [pre: data["pre"], post: data["post"], endpoint: data["endpoint"]]
+      _ ->
+        form = [data: data]
+    end
+    post_json "#{instance[:url]}/api/v0.1/#{event}/", form
     {:ok, "Sent to DDD"}
   end
 
