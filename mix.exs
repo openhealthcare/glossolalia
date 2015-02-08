@@ -31,8 +31,8 @@ defmodule Glossolalia.Mixfile do
       {:cowboy, "~> 1.0.0"},
       {:ehl7, git: "https://github.com/jcomellas/ehl7"},
       {:httpoison, "~> 0.6"},
-      {:json, "~> 0.3.0"} 
-
+      {:json, "~> 0.3.0"},
+      {:exrm, "~> 0.14.16"},
     ]
   end
 

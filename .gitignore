@@ -1,6 +1,7 @@
 /_build
 /deps
 erl_crash.dump
+/rel
 *.ez
 *~
 notes.txt
