@@ -53,5 +53,10 @@ defmodule Glossolalia.Services.OPAL do
     post_json "#{instance[:url]}/api/v0.1/episode/#{data["post"]["id"]}/change", @encoding.encode(data["post"])
     {:ok, "Posted"}
   end
+
+  def broadcast(instance, :change, data) do
+    IO.puts "Broadcasting an OPAL change"
+    Glossolalia.Endpoint.broadcast! "broadcast:#{instance.name}", "change", data["post"]
+  end
   
 end

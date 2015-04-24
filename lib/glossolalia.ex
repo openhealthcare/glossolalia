@@ -10,7 +10,8 @@ defmodule Glossolalia do
       # Start the endpoint when the application starts
       supervisor(Glossolalia.Endpoint, []),
       worker(Glossolalia.Accepter, []),
-      worker(Glossolalia.Writer, [])
+      worker(Glossolalia.Writer, []),
+      worker(Glossolalia.Broadcaster, [])
 
       # Here you could define other workers and supervisors as children
       # worker(Glossolalia.Worker, [arg1, arg2, arg3]),

@@ -1,6 +1,10 @@
 defmodule Glossolalia.Router do
   use Phoenix.Router
 
+  socket "/ws", Glossolalia do
+    channel "broadcast:*", BroadcastChannel
+  end
+  
   pipeline :browser do
     plug :accepts, ~w(html)
     plug :fetch_session
