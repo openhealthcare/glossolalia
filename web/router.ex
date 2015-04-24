@@ -12,14 +12,6 @@ defmodule Glossolalia.Router do
     plug :accepts, ~w(json)
   end
   
-  # scope "/", Cedar do
-  #   pipe_through :browser # Use the default browser stack
-    
-  #   get "/", PageController, :index, as: :pages
-  #   get "/rules/", EditorController, :editor
-  #   get "/api/v0.1/", Api01Controller, :index
-  # end
-  
   scope "/", Glossolalia do
     pipe_through :browser
 
