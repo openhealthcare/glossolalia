@@ -27,7 +27,7 @@ defmodule Glossolalia.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [
-      {:phoenix, "0.8.0"},
+      {:phoenix, "0.11.0"},
       {:cowboy, "~> 1.0.0"},
       {:ehl7, git: "https://github.com/jcomellas/ehl7"},
       {:httpoison, "~> 0.6"},
@@ -43,7 +43,7 @@ defmodule Glossolalia.Mixfile do
   defp services do
     [
         elcid: [url: 'http://localhost:8000', type: :OPAL],
-        renal: [url: 'http://localhost:8080', type: :OPAL],
+#        renal: [url: 'http://localhost:8080', type: :OPAL],
         ddd:   [url: 'http://localhost:4000', type: :DDD ]
     ]
   end

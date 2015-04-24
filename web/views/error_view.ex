@@ -1,5 +1,5 @@
 defmodule Glossolalia.ErrorView do
-  use Glossolalia.View
+  use Glossolalia.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found - 404"

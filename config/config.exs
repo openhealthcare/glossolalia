@@ -9,7 +9,10 @@ use Mix.Config
 config :glossolalia, Glossolalia.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "F2Zohy8xYb2qYrDgQ5ZPESZCZ4YBbHvYLwyDXWvlqgXcE4kLQKMvV1U/c2DdMoSf",
-  debug_errors: false
+  debug_errors: false,
+  server: true,
+  pubsub: [adapter: Phoenix.PubSub.PG2, name: Glossolalia.PubSub],
+  root: Path.expand("..", __DIR__)
 
 # Configures Elixir's Logger
 config :logger, :console,

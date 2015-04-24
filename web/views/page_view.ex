@@ -1,4 +1,4 @@
 defmodule Glossolalia.PageView do
-  use Glossolalia.View
+  use Glossolalia.Web, :view
 
 end

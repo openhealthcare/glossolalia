@@ -1,3 +1,3 @@
 defmodule Glossolalia.ApiView do
-  use Glossolalia.View
+  use Glossolalia.Web, :view
 end

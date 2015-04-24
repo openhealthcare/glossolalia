@@ -1,5 +1,5 @@
 defmodule Glossolalia.PageController do
-  use Phoenix.Controller
+  use Glossolalia.Web, :controller
 
   plug :action
 

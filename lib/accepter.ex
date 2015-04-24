@@ -5,7 +5,7 @@ defmodule Glossolalia.Accepter do
   
   def start_link do
     sub = spawn_link &(accept/0)
-    Phoenix.PubSub.subscribe(sub, "accept")
+    Phoenix.PubSub.subscribe(Glossolalia.PubSub, sub, "accept")
     {:ok, sub}
   end
 
@@ -38,7 +38,7 @@ defmodule Glossolalia.Accepter do
     Enum.each to_translate, fn({service_name, output_type}) ->
       IO.puts "Service: #{service_name}"
       IO.puts "Output: #{output_type}"
-      Phoenix.PubSub.broadcast to_string(output_type), {service_name, event, data} 
+      Phoenix.PubSub.broadcast Glossolalia.PubSub, to_string(output_type), {service_name, event, data} 
     end
   end
 
