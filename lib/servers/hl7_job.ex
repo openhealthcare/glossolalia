@@ -29,21 +29,23 @@ defmodule Glossolalia.Servers.HL7Job do
   end
 
   def process_message("ADT", "A01", sender, header_line, msg, socket) do
-    # Read the next 5 lines of the message
-    lines = for n <- 1..4, do: get_line(socket)
+    process(4, sender, header_line, msg, socket)
+  end
+
+  def process_message(_, _, sender, line, _) do
+    Logger.error("Don't understand #{line}")
+    response = "EA Message"
+    send sender,{:ok, response}
+  end
+
+  defp process(num, sender, header_line, msg, socket) do
+    lines = for n <- 1..num, do: get_line(socket)
 
     full_message = [header_line | lines]
     # TODO: Store full_message somewhere
 
     msg_id = HL7.message_header(msg, :message_control_id)
     response = "#{header_line}\nMSA|AA|#{msg_id}\r"
-    send sender,{:ok, response}
-  end
-
-
-  def process_message(_, _, sender, line, _) do
-    Logger.error("Don't understand #{line}")
-    response = "EA Message"
     send sender,{:ok, response}
   end
 
