@@ -8,7 +8,7 @@ defmodule Glossolalia.Servers.HL7 do
   """
   def listen(port) do
     IO.puts "Listening on port #{port}"
-    options = [:binary, {:packet, 0}, {:active, false}, {:reuseaddr, true}]
+    options = [:binary, {:packet, :line}, {:active, false}, {:reuseaddr, true}]
     {:ok, listen_socket} = :gen_tcp.listen(port, options)
     accept(listen_socket)
   end
@@ -34,8 +34,7 @@ defmodule Glossolalia.Servers.HL7 do
     case :gen_tcp.recv(socket, 0) do
       {:ok, data} ->
         responder = spawn(fn() -> do_respond(socket) end)
-        spawn(HL7Job, :handle_request, [responder, to_string(data)])
-        do_server(socket)
+        spawn(HL7Job, :handle_request, [responder, socket, to_string(data)])
       {:error, :closed} -> :ok
     end
   end
@@ -48,6 +47,7 @@ defmodule Glossolalia.Servers.HL7 do
     receive do
       {:ok, response} ->
         :gen_tcp.send(socket, "#{response}\n")
+        :gen_tcp.close(socket)
         Logger.info(response)
     end
   end
