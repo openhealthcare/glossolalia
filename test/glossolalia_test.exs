@@ -23,6 +23,7 @@ defmodule GlossolaliaTest do
     msg = :ehl7.decode @msh
     fields = :ehl7.segment :msh, msg
 
+    assert HL7.message_header(fields, :message_control_id) == "MSG00001"
     assert HL7.message_header(fields, :field_separator) == "|"
     assert HL7.message_header(fields, :message_date) == {{1988, 8, 18}, {11, 26, 0}}
     assert HL7.message_header(fields, :message_type) == "ADT"
