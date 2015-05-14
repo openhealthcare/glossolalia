@@ -33,6 +33,7 @@ defmodule Glossolalia.Mixfile do
       {:httpoison, "~> 0.6"},
       {:json, "~> 0.3.0"},
       {:exrm, "~> 0.14.16"},
+      {:benchfella, "0.2.0"},
     ]
   end
 
@@ -51,7 +52,7 @@ defmodule Glossolalia.Mixfile do
   defp translations do
     [
         elcid: [
-                [ from: :accept, to: [ 
+                [ from: :accept, to: [
                             { :ddd,   :write     },
                             { :elcid, :broadcast }
                         ] ]

@@ -1,4 +1,5 @@
-%{"bstr": {:git, "https://github.com/jcomellas/bstr.git", "56017bdf6c98e9975f45b29c4af7d9d0854aaefd", [ref: "master"]},
+%{"benchfella": {:hex, :benchfella, "0.2.0"},
+  "bstr": {:git, "https://github.com/jcomellas/bstr.git", "56017bdf6c98e9975f45b29c4af7d9d0854aaefd", [ref: "master"]},
   "conform": {:hex, :conform, "0.11.0"},
   "cowboy": {:hex, :cowboy, "1.0.0"},
   "cowlib": {:hex, :cowlib, "1.0.1"},

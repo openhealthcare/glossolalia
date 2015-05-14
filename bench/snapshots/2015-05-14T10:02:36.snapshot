@@ -1,0 +1,5 @@
+duration:1.0;mem stats:false;sys mem stats:false
+module;test;tags;iterations;elapsed
+HL7Bench	patient visit		200000	1722777
+HL7Bench	extract pid string		100000	1304192
+HL7Bench	extract header		200000	1788905
