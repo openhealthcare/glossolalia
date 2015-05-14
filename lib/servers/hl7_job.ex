@@ -40,8 +40,8 @@ defmodule Glossolalia.Servers.HL7Job do
 
   defp process(num, sender, header_line, msg, socket) do
     lines = for n <- 1..num, do: get_line(socket)
-
     full_message = [header_line | lines]
+
     # TODO: Store full_message somewhere
 
     msg_id = HL7.message_header(msg, :message_control_id)

@@ -48,7 +48,11 @@ defmodule Glossolalia.Servers.HL7 do
       {:ok, response} ->
         :gen_tcp.send(socket, "#{response}\n")
         :gen_tcp.close(socket)
-        Logger.info(response)
+        #Logger.info(response)
+    after
+      500 ->
+        :gen_tcp.send(socket, "EA\n")
+        :gen_tcp.close(socket)
     end
   end
 end
