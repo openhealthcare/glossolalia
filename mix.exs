@@ -27,7 +27,8 @@ defmodule Glossolalia.Mixfile do
   # Type `mix help deps` for examples and options
   defp deps do
     [
-      {:phoenix, "0.11.0"},
+      {:phoenix, "~> 1.1"},
+      {:phoenix_html, "~> 2.3"},
       {:cowboy, "~> 1.0.0"},
       {:ehl7, git: "https://github.com/jcomellas/ehl7"},
       {:httpoison, "~> 0.6"},

@@ -26,5 +26,5 @@ defmodule Glossolalia.Endpoint do
     signing_salt: "i7WCzTQc",
     encryption_salt: "EkOtpwKz"
 
-  plug :router, Glossolalia.Router
+  plug Glossolalia.Router
 end

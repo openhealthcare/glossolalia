@@ -24,7 +24,6 @@ defmodule Glossolalia.Encodings.HL7 do
   Record.defrecord :referral_info,    Record.extract(:rf1,  from: "deps/ehl7/include/ehl7_segment.hrl")
   Record.defrecord :procedure_authorization, Record.extract(:zau,  from: "deps/ehl7/include/ehl7_segment.hrl")
 
-
   @doc """
   Takes HL7 data && decodes it.
   """
