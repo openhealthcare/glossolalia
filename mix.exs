@@ -30,7 +30,7 @@ defmodule Glossolalia.Mixfile do
       {:phoenix, "~> 1.1"},
       {:phoenix_html, "~> 2.3"},
       {:cowboy, "~> 1.0.0"},
-      {:ehl7, git: "https://github.com/jcomellas/ehl7"},
+      {:ehl7, git: "https://github.com/openhealthcare/ehl7"},
       {:httpoison, "~> 0.6"},
       {:json, "~> 0.3.0"},
       {:exrm, "~> 0.14.16"},

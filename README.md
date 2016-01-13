@@ -16,4 +16,3 @@ You're welcome.
 2. Start Phoenix router with `mix phoenix.server`
 
 Now you can visit `localhost:4000` from your browser.
-

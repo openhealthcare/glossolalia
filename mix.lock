@@ -3,7 +3,7 @@
   "conform": {:hex, :conform, "0.11.0"},
   "cowboy": {:hex, :cowboy, "1.0.4"},
   "cowlib": {:hex, :cowlib, "1.0.2"},
-  "ehl7": {:git, "https://github.com/jcomellas/ehl7", "93d67c00b95ea11e461e484ccfebc97044cae0ee", []},
+  "ehl7": {:git, "https://github.com/openhealthcare/ehl7", "93d67c00b95ea11e461e484ccfebc97044cae0ee", []},
   "exrm": {:hex, :exrm, "0.14.17"},
   "getopt": {:git, "https://github.com/jcomellas/getopt.git", "626698975e63866156159661d100785d65eab6f9", [ref: "master"]},
   "hackney": {:hex, :hackney, "1.0.6"},
