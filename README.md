@@ -12,6 +12,7 @@ You're welcome.
 
 0. Install libssl-dev qt4-qmake
    Install rebar (git then make)
+0.2 Install the C based ehl7parser library (follow their [installation instructions](https://github.com/jcomellas/hl7parser))
 1. Install dependencies with `mix deps.get`
 2. Start Phoenix router with `mix phoenix.server`
 
