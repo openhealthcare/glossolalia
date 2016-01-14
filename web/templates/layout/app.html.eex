@@ -26,8 +26,8 @@
 
         </span>
       </div>
-
-      <%= assigns[:inner] %>
+  
+      <%= render @view_module, @view_template, assigns %>
 
       <div class="footer">
         <p><a href="http://openhealthcare.org.uk">openhealthcare.org.uk</a></p>
