@@ -27,7 +27,7 @@
         </span>
       </div>
 
-      <%= @inner %>
+      <%= assigns[:inner] %>
 
       <div class="footer">
         <p><a href="http://openhealthcare.org.uk">openhealthcare.org.uk</a></p>
