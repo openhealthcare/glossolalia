@@ -31,6 +31,7 @@ defmodule Glossolalia.Mixfile do
       {:phoenix_html, "~> 2.3"},
       {:cowboy, "~> 1.0.0"},
       {:ehl7, git: "https://github.com/jcomellas/ehl7"},
+      {:ex_hl7, "~> 0.1.3"},
       {:httpoison, "~> 0.6"},
       {:json, "~> 0.3.0"},
       {:exrm, "~> 0.14.16"},

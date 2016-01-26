@@ -16,5 +16,5 @@ defmodule Glossolalia.BroadcastChannel do
     push socket, "change", payload
     {:noreply, socket}
   end
-  
+
 end

@@ -1,6 +1,7 @@
 defmodule Glossolalia.Encodings.HL7 do
   require Record
 
+
   Record.defrecord :message_header,   Record.extract(:msh,  from: "deps/ehl7/include/ehl7_segment.hrl")
 
   Record.defrecord :personal_info,    Record.extract(:pid,  from: "deps/ehl7/include/ehl7_segment.hrl")
