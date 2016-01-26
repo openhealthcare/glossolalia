@@ -30,9 +30,7 @@ defmodule Glossolalia.Transports.Hl7.Processor do
       }
   end
 
-  def process_message(raw_message) do
-    msg = String.lstrip raw_message, ?\v
-
+  def process_message(msg) do
     req = Serializer.decode!(msg)
     msh = HL7.segment(req, "MSH")
     res = HL7.replace(req, "MSH", get_msh(msh))

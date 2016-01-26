@@ -34,13 +34,29 @@ defmodule Glossolalia.Transports.Mllp.Serializer do
 
   def encode!(%Message{} = msg), do: msg
 
+  def clean(msg) do
+    if String.starts_with? msg, "\v" do
+      Logger.debug "cleaning vertical tab"
+      msg = String.lstrip(msg, ?\v)
+    end
+    if String.ends_with? msg, "\x1c\r" do
+      Logger.debug "string ends with File Seperator, cleaning..."
+      msg = String.slice(msg, 0, String.length(msg) - 2)
+    end
+
+    unless String.ends_with? msg, "\r" do
+      Logger.debug "string does not end with carriage return, adding..."
+      msg = msg <> "\r"
+    end
+
+    msg
+  end
+
   @doc """
   Decodes JSON String into `Phoenix.Socket.Message` struct.
   """
   def decode!(message) do
-    Logger.debug message
-
-    case HL7.read(message, input_format: :wire) do
+    case HL7.read(clean(message), input_format: :wire) do
       {:ok, req} ->
         req
       {:error, err} ->
