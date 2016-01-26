@@ -4,8 +4,10 @@
 
 
 defmodule Glossolalia.Transports.Mllp.Serializer do
+
   @moduledoc false
   require HL7.Composite
+  require Logger
   @behaviour Phoenix.Transports.Serializer
   alias Phoenix.Socket.Reply
   alias Phoenix.Socket.Message
@@ -36,7 +38,14 @@ defmodule Glossolalia.Transports.Mllp.Serializer do
   Decodes JSON String into `Phoenix.Socket.Message` struct.
   """
   def decode!(message) do
-    {:ok, req} = HL7.read(message, input_format: :wire)
-    req
+    Logger.debug message
+
+    case HL7.read(message, input_format: :wire) do
+      {:ok, req} ->
+        req
+      {:error, err} ->
+        Logger.error err
+        ""
+    end
   end
 end
