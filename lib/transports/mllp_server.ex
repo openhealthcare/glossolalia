@@ -38,12 +38,13 @@ defmodule Glossolalia.Transports.Mllp.Server do
   end
 
   def init do
-    opts = [:binary, active: false]
+    opts = [:binary, active: false, reuseaddr: true]
     Logger.error "it begins"
 
     case :gen_tcp.listen(8000, opts) do
       {:ok, socket} -> loop_acceptor(socket)
       {:error, issue} ->
+        Logger.error "int handle_response"
         Logger.error issue
     end
   end
@@ -59,6 +60,7 @@ defmodule Glossolalia.Transports.Mllp.Server do
         handle_response(client)
         loop_acceptor(socket)
       {:error, issue} ->
+        Logger.error "failed loop_acceptor"
         Logger.error issue
     end
   end
@@ -68,9 +70,11 @@ defmodule Glossolalia.Transports.Mllp.Server do
       {:ok, data} ->
         Logger.debug "success handle_response"
         Logger.debug data
-        :gen_tcp.send(client, Processor.process_message(data))
+        result = :gen_tcp.send(client, Processor.process_message(data))
+        Logger.error result
         handle_response(client)
       {:error, issue} ->
+        Logger.error "failed handle_response"
         Logger.error issue
     end
   end

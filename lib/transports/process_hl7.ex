@@ -34,6 +34,7 @@ defmodule Glossolalia.Transports.Hl7.Processor do
     req = Serializer.decode!(msg)
     msh = HL7.segment(req, "MSH")
     res = HL7.replace(req, "MSH", get_msh(msh))
-    HL7.insert_after(res, "MSH", get_msa(msh))
+    res = HL7.insert_after(res, "MSH", get_msa(msh))
+    HL7.write(res, output_format: :wire, trim: true)
   end
 end
