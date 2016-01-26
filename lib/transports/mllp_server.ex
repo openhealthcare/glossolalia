@@ -71,6 +71,7 @@ defmodule Glossolalia.Transports.Mllp.Server do
         Logger.debug "success handle_response"
         Logger.debug data
         result = :gen_tcp.send(client, Processor.process_message(data))
+        Logger.error ("result sent")
         Logger.error result
         handle_response(client)
       {:error, issue} ->

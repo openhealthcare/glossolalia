@@ -5,6 +5,7 @@ alias HL7.Segment.MSH
 alias HL7.Composite.CM_MSH_9
 
 defmodule Glossolalia.Transports.Hl7.Processor do
+  require Logger
 
   def get_msh(msh) do
       %MSH{msh |
@@ -33,8 +34,9 @@ defmodule Glossolalia.Transports.Hl7.Processor do
   def process_message(msg) do
     req = Serializer.decode!(msg)
     msh = HL7.segment(req, "MSH")
-    res = HL7.replace(req, "MSH", get_msh(msh))
-    res = HL7.insert_after(res, "MSH", get_msa(msh))
-    HL7.write(res, output_format: :wire, trim: true)
+    msa = get_msa(msh)
+    ack = HL7.write([msh, msa], output_format: :wire, trim: true)
+    Logger.debug ack
+    ack
   end
 end
