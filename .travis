@@ -1,0 +1,8 @@
+language: elixir
+sudo: false
+otp_release:
+  - 17.4
+script:
+  - mix test
+notifications:
+  slack: ohcuk:6spaME3CB7f2PGrMAcklYWqp
