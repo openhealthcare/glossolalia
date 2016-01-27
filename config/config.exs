@@ -8,11 +8,11 @@ use Mix.Config
 # Configures the endpoint
 config :glossolalia, Glossolalia.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "F2Zohy8xYb2qYrDgQ5ZPESZCZ4YBbHvYLwyDXWvlqgXcE4kLQKMvV1U/c2DdMoSf",
-  debug_errors: false,
-  server: true,
-  pubsub: [adapter: Phoenix.PubSub.PG2, name: Glossolalia.PubSub],
-  root: Path.expand("..", __DIR__)
+  root: Path.dirname(__DIR__),
+  secret_key_base: "LdYgSVjjVqr24v+F4xPxH5HvtEjf1HkYiKFHKZte6teK3lxNhgqlHFbg2r3s6RXg",
+  render_errors: [accepts: ~w(html json)],
+  pubsub: [name: Glossolalia.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -22,3 +22,8 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+# Configure phoenix generators
+config :phoenix, :generators,
+  migration: true,
+  binary_id: false

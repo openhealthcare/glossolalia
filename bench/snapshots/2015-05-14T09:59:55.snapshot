@@ -1,3 +1,0 @@
-duration:1.0;mem stats:false;sys mem stats:false
-module;test;tags;iterations;elapsed
-HL7Bench	hello list		500000	1870898

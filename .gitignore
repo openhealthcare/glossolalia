@@ -5,3 +5,5 @@ erl_crash.dump
 *.ez
 *~
 notes.txt
+*.sqlite3
+*.sqlite3-journal
