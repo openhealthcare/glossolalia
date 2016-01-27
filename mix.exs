@@ -10,8 +10,13 @@ defmodule Glossolalia.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
-     deps: deps]
+     deps: deps,
+     services: services,
+     translations: translations,
+     servicetypes: servicetypes
+   ]
   end
+
 
   # Configuration for the OTP application.
   #
@@ -35,9 +40,38 @@ defmodule Glossolalia.Mixfile do
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:ex_hl7, "~> 0.1.3"},
+     {:httpoison, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:sqlite_ecto, "~> 1.0.0"}]
+  end
+
+  defp servicetypes do
+    [OPAL: Glossolalia.Services.OPAL, DDD: Glossolalia.Services.DDD]
+  end
+
+  defp services do
+    [
+        elcid: [url: 'http://localhost:8000', type: :OPAL],
+#        renal: [url: 'http://localhost:8080', type: :OPAL],
+        ddd:   [url: 'http://localhost:4000', type: :DDD ]
+    ]
+  end
+
+  defp translations do
+    [
+        elcid: [
+                [ from: :accept, to: [
+                            { :ddd,   :write     },
+                            { :elcid, :broadcast }
+                        ] ]
+#                [ from: :accept, to: [  ] ]
+            ],
+        # renal: [
+        #         [from: :accept, to: [ {:elcid, :write}, {:ddd, :write} ] ]
+        #     ]
+    ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

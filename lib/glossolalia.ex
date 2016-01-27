@@ -13,6 +13,11 @@ defmodule Glossolalia do
       supervisor(Glossolalia.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Glossolalia.Worker, [arg1, arg2, arg3]),
+
+      worker(Glossolalia.Accepter, []),
+      worker(Glossolalia.Writer, []),
+      worker(Glossolalia.Broadcaster, []),
+      worker(Task, [fn -> Glossolalia.Hl7Messaging.MllpServer.init() end]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
