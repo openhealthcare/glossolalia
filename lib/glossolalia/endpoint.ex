@@ -1,14 +1,16 @@
 defmodule Glossolalia.Endpoint do
   use Phoenix.Endpoint, otp_app: :glossolalia
+  use Application
 
   socket "/socket", Glossolalia.UserSocket
+  root_url = Application.get_env(:glossolalia, Glossolalia.Endpoint)[:root_url]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :glossolalia, gzip: false,
+    at: root_url, from: :glossolalia, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the

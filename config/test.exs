@@ -4,10 +4,12 @@ use Mix.Config
 # you can enable the server option below.
 config :glossolalia, Glossolalia.Endpoint,
   http: [port: 4001],
-  server: false
+  server: false,
+  root_url: "/"
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
 
 # Configure your database
 # config :glossolalia, Glossolalia.Repo,
