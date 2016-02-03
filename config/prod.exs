@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :glossolalia, Glossolalia.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "elcid-rfh-test.openhealthcare.org.uk", port: 5000],
+  url: [host: "elcid-uch-test.openhealthcare.org.uk", port: 5000],
   cache_static_manifest: "priv/static/manifest.json",
   root_url: "/gloss/"
 
