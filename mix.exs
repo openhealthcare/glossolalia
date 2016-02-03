@@ -45,7 +45,7 @@ defmodule Glossolalia.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:sqlite_ecto, "~> 1.0.0"},
-     {:exrm, "~> 0.14.2" }]
+     {:exrm, "~> 0.19.9" }]
   end
 
   defp servicetypes do

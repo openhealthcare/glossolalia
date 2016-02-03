@@ -16,19 +16,19 @@ defmodule Glossolalia.Hl7Messaging.MllpServer do
   @initial_state %{socket: nil}
 
   def start_link do
-    GenServer.start_link(__MODULE__, @initial_state)
+    # GenServer.start_link(__MODULE__, @initial_state)
   end
 
   def init do
     opts = [:binary, active: false, reuseaddr: true]
     Logger.error "it begins"
 
-    case :gen_tcp.listen(8000, opts) do
-      {:ok, socket} -> loop_acceptor(socket)
-      {:error, issue} ->
-        Logger.error "int handle_response"
-        Logger.error issue
-    end
+    # case :gen_tcp.listen(8000, opts) do
+    #   {:ok, socket} -> loop_acceptor(socket)
+    #   {:error, issue} ->
+    #     Logger.error "int handle_response"
+    #     Logger.error issue
+    # end
   end
 
   def command(pid, cmd) do

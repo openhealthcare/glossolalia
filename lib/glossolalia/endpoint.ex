@@ -5,8 +5,8 @@ defmodule Glossolalia.Endpoint do
 
 
   socket "/socket", Glossolalia.UserSocket
-  root_url = Application.get_env(:glossolalia, Glossolalia.Endpoint)[:root_url]
-  Logger.error("root url " <> root_url)
+  # root_url = Application.get_env(:glossolalia, Glossolalia.Endpoint)[:root_url]
+  root_url = "/"
 
   # Serve at "/" the static files from "priv/static" directory.
   #

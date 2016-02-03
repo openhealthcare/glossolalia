@@ -17,7 +17,7 @@ defmodule Glossolalia do
       worker(Glossolalia.Accepter, []),
       worker(Glossolalia.Writer, []),
       worker(Glossolalia.Broadcaster, []),
-      worker(Task, [fn -> Glossolalia.Hl7Messaging.MllpServer.init() end]),
+      # worker(Task, [fn -> Glossolalia.Hl7Messaging.MllpServer.init() end]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

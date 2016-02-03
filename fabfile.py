@@ -23,16 +23,24 @@ def check_for_uncommitted():
     else:
         return True
 
-
 @task
-def deploy(key_file_name="../ec2.pem"):
-    env.key_filename = key_file_name
-
-    # if check_for_uncommitted():
+def build():
     with cd("~/{}".format(project_name)):
         local("MIX_ENV=prod mix phoenix.digest")
         local("MIX_ENV=prod mix release")
+
+
+@task
+def release():
+    with cd("~/{}".format(project_name)):
         upload_project(
             remote_dir="/home/ubuntu/glossolalia-new",
             local_dir="/usr/lib/ohc/glossolalia/rel/glossolalia/"
         )
+@task
+def deploy(key_file_name="../ec2.pem"):
+    env.key_filename = key_file_name
+
+    if check_for_uncommitted():
+        build()
+        release()
