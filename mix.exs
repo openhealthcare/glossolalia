@@ -51,7 +51,7 @@ defmodule Glossolalia.Mixfile do
      {:phoenix_ecto, "~> 2.0"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:ex_hl7, "~> 0.1.3"},
+     {:ex_hl7, git: "https://github.com/openhealthcare/ex_hl7.git"},
      {:httpoison, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
