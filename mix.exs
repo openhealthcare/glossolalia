@@ -32,7 +32,8 @@ defmodule Glossolalia.Mixfile do
        :httpoison,
        :gettext,
        :cowboy,
-       :logger
+       :logger,
+       :sqlite_ecto
        ]
      ]
   end
@@ -54,6 +55,7 @@ defmodule Glossolalia.Mixfile do
      {:httpoison, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
+     {:sqlite_ecto, "~> 1.0.0"},
      {:exrm, "~> 0.19.9" }]
   end
 
