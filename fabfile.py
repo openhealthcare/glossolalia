@@ -28,7 +28,7 @@ def check_for_uncommitted():
 def build():
     with cd("~/{}".format(project_name)):
         local("MIX_ENV=prod mix phoenix.digest")
-        local("MIX_ENV=prod mix release")
+        local("MIX_ENV=prod mix release mix release --verbosity=verbose")
 
 
 @task

@@ -8,6 +8,7 @@ defmodule Glossolalia.Patient do
     field :patient_forename, :string
     field :patient_title, :string
     field :date_of_birth, Ecto.Date
+    has_many :comments, Glossolalia.Patient
 
     timestamps
   end

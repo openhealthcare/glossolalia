@@ -22,6 +22,8 @@ defmodule Glossolalia.Router do
     pipe_through :browser
 
     get "/", PageController, :index, as: :pages
+    resources "/patient", PatientController
+    resources "/patient_identifier", PatientIdentifierController
   end
 
   scope "/api", Glossolalia do
