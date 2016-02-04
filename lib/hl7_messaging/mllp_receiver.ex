@@ -31,12 +31,18 @@ defmodule Glossolalia.Hl7Messaging.MllpReceiver  do
       }
   end
 
+  def generate_ack(req) do
+    msh = HL7.segment(req, "MSH")
+    msa = get_msa(msh)
+    HL7.write([msh, msa], output_format: :wire, trim: true)
+  end
+
   def process_message(msg) do
     req = Serializer.decode!(msg)
     msh = HL7.segment(req, "MSH")
     msa = get_msa(msh)
     spawn(fn() -> Glossolalia.Transports.Hl7.Job.process(req) end)
-    ack = HL7.write([msh, msa], output_format: :wire, trim: true)
+    ack = generate_ack(req)
     Logger.debug ack
     ack
   end
