@@ -1,5 +1,6 @@
 use HL7.Segment.Def
 
+
 defmodule HL7.Segment.PD1 do
   segment "PD1" do
     field :gp_user_pointer,    seq:  1, type: :integer,  length:  4
@@ -24,16 +25,17 @@ defmodule HL7.Segment.ZUK do
   end
 end
 
-defmodule HL7.Segment.PID do
-  @moduledoc "3.4.2 PID - patient identification segment"
-  alias HL7.Composite.CX
-  alias HL7.Composite.XPN
-
-  segment "PID" do
-    field :set_id,                     seq:  1, type: :integer,  length:  4
-    field :patient_id,                 seq:  3, type: CX,        length: 48
-    field :alt_patient_id,             seq:  4, type: CX,        length: 48
-    field :patient_name,               seq:  5, type: XPN,       length: 51
-    field :date_of_birth,              seq:  7, type: :string,   length: 51
-  end
-end
+# this is overriding an existing component but we need it...
+# defmodule HL7.Segment.PID do
+#   @moduledoc "3.4.2 PID - patient identification segment"
+#   alias HL7.Composite.CX
+#   alias HL7.Composite.XPN
+#
+#   segment "PID" do
+#     field :set_id,                     seq:  1, type: :integer,  length:  4
+#     field :patient_id,                 seq:  3, type: CX,        length: 48
+#     field :alt_patient_id,             seq:  4, type: CX,        length: 48
+#     field :patient_name,               seq:  5, type: XPN,       length: 51
+#     field :date_of_birth,              seq:  7, type: :string,   length: 51
+#   end
+# end

@@ -23,8 +23,18 @@ defmodule Glossolalia.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Glossolalia, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+     applications: [
+       :phoenix,
+       :postgrex,
+       :phoenix_ecto,
+       :phoenix_html,
+       :ex_hl7,
+       :httpoison,
+       :gettext,
+       :cowboy,
+       :logger
+       ]
+     ]
   end
 
   # Specifies which paths to compile per environment.
@@ -44,7 +54,6 @@ defmodule Glossolalia.Mixfile do
      {:httpoison, "~> 0.6"},
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
-     {:sqlite_ecto, "~> 1.0.0"},
      {:exrm, "~> 0.19.9" }]
   end
 
