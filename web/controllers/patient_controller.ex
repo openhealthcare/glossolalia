@@ -13,17 +13,17 @@ defmodule Glossolalia.PatientController do
   def create(conn, %{"patient" => patient_params}) do
     changeset = Patient.changeset(%Patient{}, patient_params)
 
-    case Repo.insert(changeset) do
-      {:ok, patient} ->
-        conn
-        |> put_status(:created)
-        |> put_resp_header("location", patient_path(conn, :show, patient))
-        |> render("show.json", patient: patient)
-      {:error, changeset} ->
-        conn
-        |> put_status(:unprocessable_entity)
-        |> render(Glossolalia.ChangesetView, "error.json", changeset: changeset)
-    end
+    # case Repo.insert(changeset) do
+    #   {:ok, patient} ->
+    #     conn
+    #     |> put_status(:created)
+    #     |> put_resp_header("location", patient_path(conn, :show, patient))
+    #     |> render("show.json", patient: patient)
+    #   {:error, changeset} ->
+    #     conn
+    #     |> put_status(:unprocessable_entity)
+    #     |> render(Glossolalia.ChangesetView, "error.json", changeset: changeset)
+    # end
   end
 
   def show(conn, %{"id" => id}) do

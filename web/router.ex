@@ -1,29 +1,32 @@
 defmodule Glossolalia.Router do
-  use Glossolalia.Web, :router
+  use Phoenix.Router
 
-  alias Glossolalia.PatientController
+  # socket "/ws", Glossolalia do
+  #   channel "broadcast:*", BroadcastChannel
+  # end
+
+
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ~w(html)
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
   end
 
   pipeline :api do
-    resources "/patient", PatientController, except: [:new, :edit]
-    plug :accepts, ["json"]
+    plug :accepts, ~w(json)
   end
 
   scope "/", Glossolalia do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PageController, :index, as: :pages
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Glossolalia do
-  #   pipe_through :api
-  # end
+  scope "/api", Glossolalia do
+    pipe_through :api
+
+    post "/v0.1/accept", APIController, :accept
+  end
 end
