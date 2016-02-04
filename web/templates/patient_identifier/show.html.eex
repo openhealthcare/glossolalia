@@ -1,0 +1,23 @@
+<h2>Show patient identifier</h2>
+
+<ul>
+
+  <li>
+    <strong>Source:</strong>
+    <%= @patient_identifier.source %>
+  </li>
+
+  <li>
+    <strong>Identifier:</strong>
+    <%= @patient_identifier.identifier %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @patient_identifier.status %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: patient_identifier_path(@conn, :edit, @patient_identifier) %>
+<%= link "Back", to: patient_identifier_path(@conn, :index) %>
