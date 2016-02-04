@@ -10,3 +10,4 @@ notes.txt
 priv/static
 *.pyc
 **/prod.secret.exs
+mix.lock
