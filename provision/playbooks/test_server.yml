@@ -1,0 +1,6 @@
+- hosts: all
+  user: ubuntu
+  gather_facts: no
+  tasks:
+    # Elixir
+    - include: ../common/bring_in_erlang.yml

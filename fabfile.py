@@ -38,10 +38,17 @@ def build():
 @task
 def build_remote_server(key_file_name="../ec2.pem"):
     remote_user = env.user
-    playbook = "provision/playbooks/remote_server.yml"
+    playbook = "provision/playbooks/staging_server.yml"
     hosts = "provision/playbooks/hosts.yml"
     command = "ansible-playbook --private-key {0} -i {1} -u {2} {3}"
     command = command.format(key_file_name, hosts, remote_user, playbook)
+    local(command)
+
+
+@task
+def build_test_server():
+    playbook = "provision/playbooks/test_server.yml"
+    command = 'ansible-playbook -i "localhost," -c local {}'.format(playbook)
     local(command)
 
 
