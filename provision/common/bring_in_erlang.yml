@@ -1,0 +1,72 @@
+- name: Set locale
+  sudo: yes
+  command: update-locale LC_ALL=en_GB.UTF-8 LANG=en_GB.UTF-8
+
+- sudo: yes
+  command: dpkg-reconfigure locales
+
+- name: Update security packages
+  sudo: yes
+  replace: dest=/etc/apt/sources.list regexp='us.archive.ubuntu.com' replace='old-releases.ubuntu.com' backup=yes
+
+- name: Update security packages
+  sudo: yes
+  replace: dest=/etc/apt/sources.list regexp='eu-west-1.ec2.archive.ubuntu.com' replace='old-releases.ubuntu.com' backup=no
+
+- name: Update security packages
+  sudo: yes
+  replace: dest=/etc/apt/sources.list regexp='security.ubuntu.com' replace='old-releases.ubuntu.com' backup=no
+
+- name: Update Apt
+  sudo: yes
+  command: apt-get update
+
+- name: Add nice repository adding
+  sudo: yes
+  apt: pkg=python-software-properties
+
+- name: Update Apt
+  sudo: yes
+  command: apt-get update
+
+- name: Install packages
+  sudo: yes
+  apt: pkg={{ item }} state=installed update_cache=yes force=yes
+  with_items:
+      - git
+      - fabric
+      - libssl1.0.0
+      - libssl-dev
+      - ncurses-dev
+      - curl
+
+- name: Bring in Kerl
+  sudo: yes
+  get_url: url=https://raw.githubusercontent.com/yrashk/kerl/master/kerl dest=/usr/lib
+
+- name: Make Kerl executable
+  sudo: yes
+  command: chmod a+x /usr/lib/kerl
+
+- name: Update Kerl
+  sudo: yes
+  command: ./kerl update releases chdir=/usr/lib
+
+- name: mkdir
+  sudo: yes
+  file: path=/usr/lib/kerl-builds state=directory
+
+- name: Build erlang 18
+  sudo: yes
+  command: ./kerl build 18.2 erlang18 chdir=/usr/lib
+
+- name: Install erlang 18
+  sudo: yes
+  command: ./kerl install erlang18 kerl-builds chdir=/usr/lib
+
+- name: Acivate erlang 18
+  sudo: yes
+  shell: . /usr/lib/kerl-builds/activate
+
+- name: activate kerl on ssh
+  lineinfile: dest=~/.bashrc line='. /usr/lib/kerl-builds/activate'

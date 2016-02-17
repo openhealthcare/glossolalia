@@ -1,0 +1,27 @@
+- hosts: all
+  user: ubuntu
+  gather_facts: no
+  tasks:
+    # Elixir
+    # - include: ../common/bring_in_erlang.yml
+    - name: Install packages
+      sudo: yes
+      apt: pkg={{ item }} state=installed update_cache=yes force=yes
+      with_items:
+        - nginx
+        - dbus-x11
+
+    - copy: src=files/nginx.conf  dest=/home/ubuntu
+    - name: setup nginx sites-enabled symlink
+      file: path=/etc/nginx/sites-enabled/glossolalia.conf src=/home/ubuntu/nginx.conf state=link force=yes
+      sudo: yes
+    - copy: src=files/upstart.conf  dest=/home/ubuntu
+    - name: setup upstart
+      file: path=/etc/init/glossolalia.conf src=/home/ubuntu/upstart.conf state=link force=yes
+      sudo: yes
+    - name: start application
+      sudo: yes
+      command: start glossolalia
+    - name: restart nginx
+      sudo: yes
+      service: name=nginx state=restarted

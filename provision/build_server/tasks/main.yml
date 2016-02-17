@@ -1,0 +1,16 @@
+- include: ../common/bring_in_erlang.yml
+
+
+- name: Install packages
+  sudo: yes
+  apt: pkg=ansible state=installed update_cache=yes force=yes
+- name: Build elixir
+  sudo: yes
+  git: repo=https://github.com/elixir-lang/elixir.git dest=/usr/lib/elixir
+
+- name: Compile elixir
+  sudo: yes
+  shell: . /usr/lib/kerl-builds/activate && make clean test chdir=/usr/lib/elixir
+
+- name: Install elixir dependencies
+  lineinfile: dest=/home/vagrant/.bashrc line='export PATH="$PATH:/usr/lib/elixir/bin"'
